@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vendex — Join the Waitlist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: #f9f9f7;
+    color: #1a1a1a;
+    min-height: 100vh;
+    padding: 3rem 1.5rem;
+  }
+  .wrap {
+    max-width: 580px;
+    margin: 0 auto;
+  }
+  .top {
+    text-align: center;
+    padding: 2.5rem 0 2rem;
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #0f0f0f; color: #fff;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 999px; margin-bottom: 1.5rem;
+  }
+  .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #5DCAA5; }
+  .wordmark {
+    font-size: 56px; font-weight: 700; letter-spacing: -0.04em;
+    color: #0f0f0f; margin: 0 0 0.6rem; line-height: 1;
+  }
+  .tagline {
+    font-size: 16px; color: #555; line-height: 1.6;
+    max-width: 400px; margin: 0 auto 2rem; font-weight: 400;
+  }
+  .perks {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 10px; margin-bottom: 2rem;
+  }
+  .perk {
+    background: #fff; border-radius: 12px; padding: 1rem;
+    text-align: center; border: 0.5px solid #e8e8e4;
+  }
+  .perk-icon { font-size: 22px; margin-bottom: 6px; }
+  .perk-title { font-size: 13px; font-weight: 600; color: #0f0f0f; margin-bottom: 2px; }
+  .perk-sub { font-size: 11px; color: #888; line-height: 1.4; }
+  .counter {
+    display: flex; align-items: center; justify-content: center;
+    gap: 6px; font-size: 13px; color: #888; margin-bottom: 1.5rem;
+  }
+  .counter-num { font-size: 18px; font-weight: 700; color: #0f0f0f; }
+  .form-wrap {
+    background: #0f0f0f; border-radius: 16px;
+    padding: 2rem; margin-bottom: 1.5rem;
+  }
+  .form-title { font-size: 17px; font-weight: 600; color: #fff; margin: 0 0 0.35rem; }
+  .form-sub { font-size: 13px; color: #888; margin: 0 0 1.25rem; }
+  .field { margin-bottom: 10px; }
+  .field input, .field select {
+    width: 100%; padding: 0 14px; height: 46px; border-radius: 10px;
+    border: 1px solid #2a2a2a; background: #1a1a1a; color: #fff;
+    font-family: 'Space Grotesk', sans-serif; font-size: 14px; outline: none;
+    appearance: none; -webkit-appearance: none;
+    transition: border-color 0.15s;
+  }
+  .field input::placeholder { color: #555; }
+  .field input:focus, .field select:focus { border-color: #1D9E75; }
+  .field select { color: #555; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; }
+  .field select.selected { color: #fff; }
+  .btn {
+    width: 100%; height: 50px; border-radius: 10px; border: none;
+    background: #1D9E75; color: #fff;
+    font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600;
+    cursor: pointer; margin-top: 4px; transition: background 0.15s;
+  }
+  .btn:hover { background: #0f6e56; }
+  .btn:active { transform: scale(0.99); }
+  .success {
+    display: none; background: #0f0f0f; border-radius: 16px;
+    padding: 2.5rem 2rem; text-align: center; margin-bottom: 1.5rem;
+  }
+  .success-icon { font-size: 40px; margin-bottom: 0.75rem; }
+  .success-title { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+  .success-sub { font-size: 14px; color: #888; margin-bottom: 1.25rem; line-height: 1.65; }
+  .spot { font-size: 13px; color: #888; margin-top: 0.75rem; }
+  .spot span { color: #1D9E75; font-weight: 700; }
+  .share-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 1.25rem; }
+  .share-btn {
+    background: #1a1a1a; border: 1px solid #2a2a2a; color: #fff;
+    border-radius: 8px; padding: 9px 16px; font-size: 13px; font-weight: 500;
+    cursor: pointer; font-family: 'Space Grotesk', sans-serif;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .share-btn:hover { background: #222; }
+  .footer {
+    text-align: center; font-size: 11px; color: #bbb;
+    letter-spacing: 0.05em; border-top: 0.5px solid #e8e8e4;
+    padding-top: 1.25rem; margin-top: 0.5rem;
+  }
+  @media (max-width: 480px) {
+    .perks { grid-template-columns: 1fr; }
+    .wordmark { font-size: 42px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="badge"><span class="badge-dot"></span> Coming soon</div>
+    <p class="wordmark">Vendex</p>
+    <p class="tagline">Connect, collaborate, and grow — the network for creative professionals.</p>
+  </div>
+
+  <div class="perks">
+    <div class="perk">
+      <div class="perk-icon">🎁</div>
+      <div class="perk-title">3 months free</div>
+      <div class="perk-sub">First 1,000 members get full access at no cost</div>
+    </div>
+    <div class="perk">
+      <div class="perk-icon">🏅</div>
+      <div class="perk-title">Founding member</div>
+      <div class="perk-sub">Exclusive badge & locked-in early pricing forever</div>
+    </div>
+    <div class="perk">
+      <div class="perk-icon">🔔</div>
+      <div class="perk-title">First to know</div>
+      <div class="perk-sub">Be first in when the app goes live</div>
+    </div>
+  </div>
+
+  <div class="counter">
+    <span><span class="counter-num" id="counter">0</span> vendors on the waitlist</span>
+  </div>
+
+  <div class="form-wrap" id="form-wrap">
+    <p class="form-title">Claim your founding member spot</p>
+    <p class="form-sub">Spots are limited. First 1,000 get 3 months free.</p>
+    <form id="waitlist-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <div class="field"><input type="text" name="name" id="fname" placeholder="Full name" required /></div>
+      <div class="field"><input type="email" name="email" id="femail" placeholder="Email address" required /></div>
+      <div class="field">
+        <select name="vendor_type" id="ftype" required onchange="this.classList.add('selected')">
+          <option value="" disabled selected>What type of vendor are you?</option>
+          <option>Photographer</option>
+          <option>Videographer</option>
+          <option>Content Creator</option>
+          <option>DJ / Entertainment</option>
+          <option>Florist</option>
+          <option>Wedding / Event Planner</option>
+          <option>Caterer</option>
+          <option>Beauty</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <button type="submit" class="btn">Join the waitlist — it's free</button>
+    </form>
+  </div>
+
+  <div class="success" id="success-wrap">
+    <div class="success-icon">✅</div>
+    <p class="success-title">You're in.</p>
+    <p class="success-sub">Welcome to Vendex. You're one of our founding members — your 3 months free is locked in. We'll reach out the moment the app goes live.</p>
+    <p class="spot">You're <span id="spot-num">#1</span> on the waitlist.</p>
+    <p class="success-sub" style="margin-top:1rem;">Know another vendor who needs this?</p>
+    <div class="share-row">
+      <button class="share-btn" onclick="copyLink()">📋 Copy link</button>
+      <button class="share-btn" onclick="shareIG()">📸 Share on Instagram</button>
+    </div>
+  </div>
+
+  <p class="footer">thevendexapp.com &nbsp;·&nbsp; built for the event industry</p>
+
+</div>
+
+<script>
+  var count = 0;
+
+  document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var name = document.getElementById('fname').value.trim();
+    var email = document.getElementById('femail').value.trim();
+    var type = document.getElementById('ftype').value;
+    if (!name || !email || !type) return;
+
+    var formData = new FormData(this);
+    fetch(this.action, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    }).then(function(res) {
+      if (res.ok) {
+        count++;
+        document.getElementById('counter').textContent = count;
+        document.getElementById('spot-num').textContent = '#' + count;
+        document.getElementById('form-wrap').style.display = 'none';
+        document.getElementById('success-wrap').style.display = 'block';
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    }).catch(function() {
+      alert('Something went wrong. Please try again.');
+    });
+  });
+
+  function copyLink() {
+    navigator.clipboard.writeText('https://thevendexapp.com').then(function() {
+      alert('Link copied! Share it with your vendor network.');
+    });
+  }
+
+  function shareIG() {
+    alert('Head to your Instagram and share:\n\n"Just joined the Vendex waitlist — the professional network built for event vendors. Grab your founding member spot free: thevendexapp.com"');
+  }
+</script>
+</body>
+</html>
